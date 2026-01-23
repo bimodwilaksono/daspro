@@ -44,11 +44,8 @@ void inputBuku(vector<Buku> &inputBuku) {
   Buku b;
 
   cout << "Masukkan Kode Buku: ";
-  // cin >> b.kode;
-  cin.ignore();
   getline(cin, b.kode);
 
-  cin.ignore();
   if (b.kode.empty() || b.kode == " ") {
     cout << "Kode tidak boleh kosong" << endl;
     return;
@@ -74,20 +71,17 @@ void inputBuku(vector<Buku> &inputBuku) {
   cout << "Masukkan Harga Buku: ";
   cin >> b.harga;
 
-
   inputBuku.push_back(b);
-};
+}
 
 void editBuku(vector<Buku> &inputBuku) {
   string kode;
   cout << "Masukkan Kode Buku yg akan diedit: ";
-  cin.ignore();
   getline(cin, kode);
-  cin.ignore();
   int index = cariKode(inputBuku, kode);
 
   if (index == -1) {
-    cout << "Buku dengan kode " << kode << "tidak ada" << endl;
+    cout << "Buku dengan kode " << kode << " tidak ada" << endl;
     return;
   }
 
@@ -106,8 +100,8 @@ void editBuku(vector<Buku> &inputBuku) {
   cout << "Masukkan Harga Buku: ";
   cin >> inputBuku[index].harga;
 
-  cout << "Edit Buku dengan kode " << kode << " berhasil"  << endl;
-};
+  cout << "Edit Buku dengan kode " << kode << " berhasil" << endl;
+}
 
 void hapusBuku(vector<Buku> &inputBuku) {
   string kode;
@@ -116,12 +110,13 @@ void hapusBuku(vector<Buku> &inputBuku) {
   int index = cariKode(inputBuku, kode);
 
   if (index == -1) {
-    cout << "Buku dengan kode " << kode << "tidak ada" << endl;
+    cout << "Buku dengan kode " << kode << " tidak ada" << endl;
+    return;
   }
 
   inputBuku.erase(inputBuku.begin() + index);
-  cout << "Hapus Buku dengan kode " << kode << " berhasil"  << endl;
-};
+  cout << "Hapus Buku dengan kode " << kode << " berhasil" << endl;
+}
 
 void laporanBuku(vector<Buku> &inputBuku) {
   if (inputBuku.empty()) {
@@ -137,11 +132,12 @@ void laporanBuku(vector<Buku> &inputBuku) {
     cout << "Kode Buku: " << inputBuku[i].kode << endl;
     cout << "Judul Buku: " << inputBuku[i].judul << endl;
     cout << "Penulis Buku: " << inputBuku[i].penulis << endl;
+    cout << "Tahun Buku: " << inputBuku[i].tahun << endl;
     cout << "Jumlah Buku: " << inputBuku[i].jumlah << endl;
     cout << "Harga Buku: " << inputBuku[i].harga << endl;
     cout << "Total Harga Buku: " << inputBuku[i].jumlah * inputBuku[i].harga << endl;
   }
-};
+}
 
 
 
@@ -151,7 +147,7 @@ int main() {
   int pilihan;
   vector<Buku> daftarBuku;
 
-  do {
+  while (true) {
     cout << "\n=====================\n";
     cout << "Menu Pilihan: " << endl;
     cout << "1. Input Buku" << endl;
@@ -161,6 +157,7 @@ int main() {
     cout << "5. Keluar Program" << endl;
     cout << "Pilih [1-5]: ";
     cin >> pilihan;
+    cin.ignore();
 
     switch (pilihan) {
       case 1:
@@ -176,18 +173,18 @@ int main() {
         laporanBuku(daftarBuku);
         break;
       case 5:
-      break;
-    
+        return 0;
+
     default:
       cout << "Pilihan Tidak Valid" << endl;
       break;
     }
+  }
 
-  } while(pilihan != 5);
 
   // No 2
   //  2.1
-  // int n = 0, jumlahGanjil = 0, jumlahGenap = 0; 
+  // int n = 0, jumlahGanjil = 0, jumlahGenap = 0;
 
   // cout << "Masukkan jumlah urutan data: ";
   // cin >> n;
